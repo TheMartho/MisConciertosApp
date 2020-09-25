@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MisConciertos</string>
+    <string name="Titulo">Registre Los Conciertos A Los Que Asistio</string>
+    <string name="Artista">Artista</string>
+    <string name="HintArtista">Ingrese Nombre del Artista</string>
+    <string name="Fecha">Fecha Del Evento</string>
+</resources>
