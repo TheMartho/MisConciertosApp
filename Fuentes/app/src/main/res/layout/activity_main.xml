@@ -41,6 +41,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/marginTopBase"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
@@ -59,5 +60,82 @@
             android:layout_height="wrap_content"></EditText>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/Genero"
+            android:textSize="@dimen/letraBase"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:id="@+id/spinnerGenero"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Entrada"
+            android:textSize="@dimen/letraBase"></TextView>
+
+        <EditText
+            android:id="@+id/valorEntradaTxt"
+            android:hint="@string/HintValor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/Calificacion"
+            android:textSize="@dimen/letraBase"
+            android:layout_height="wrap_content">
+        </TextView>
+        <Spinner
+            android:id="@+id/spinnerCalificacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/registrarBtn"
+            android:layout_marginTop="@dimen/marginTopBase"
+            android:textAllCaps="false"
+            android:textSize="@dimen/letraBase"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/registrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Button>
+
+    </LinearLayout>
 
 </LinearLayout>
