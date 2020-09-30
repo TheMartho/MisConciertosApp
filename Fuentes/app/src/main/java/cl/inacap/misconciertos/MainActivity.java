@@ -1,27 +1,36 @@
 package cl.inacap.misconciertos;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import cl.inacap.misconciertos.dao.ConciertosDAO;
 import cl.inacap.misconciertos.dto.Concierto;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    private ConciertosDAO cDAO = new ConciertosDAO();
+    private ListView listaConciertos;
     private EditText valorEntradaTxt;
     private  EditText artistaTxt;
     private Button registrarBtn;
@@ -29,11 +38,20 @@ public class MainActivity extends AppCompatActivity {
     private EditText calendarioTxt;
     private Spinner spinnerGenero;
     private Spinner spinnerCalificacion;
+    private List <Concierto> conciertos;
+    Adaptador miAdaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.valorEntradaTxt = findViewById(R.id.valorEntradaTxt);
+        this.artistaTxt = findViewById(R.id.artistaTxt);
+        this.registrarBtn = findViewById(R.id.registrarBtn);
+
+
+        listaConciertos = findViewById(R.id.conciertosLv);
+
 
         //GENERA EL CONTENIDO DEL SPINNER DE GENEROS
         spinnerGenero = (Spinner) findViewById(R.id.spinnerGenero);
@@ -56,33 +74,84 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        this.valorEntradaTxt = findViewById(R.id.valorEntradaTxt);
-        this.artistaTxt = findViewById(R.id.artistaTxt);
-        this.registrarBtn = findViewById(R.id.registrarBtn);
 
+
+
+        //ACCION DEL BOTON REGISTRAR
         this.registrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO:OBTENER DATOS, CREAR OBJETO Y GUARDAR EN DAO
-                //TODO:GUARDAR FECHA EN FORMATO ESPECIFICADO
                 String generoStr;
                 String calificacionStr;
+                String artistaStr = artistaTxt.getText().toString().trim();
+                int valorEntrada = 0;
+                List<String> errores = new ArrayList<>();
+
+                if (artistaStr.isEmpty()){
+                    errores.add("Debe Ingresar El Nombre Del Artista");
+                }
+
+                try {
+                    valorEntrada=Integer.parseInt(valorEntradaTxt.getText().toString().trim());
+                    if (valorEntrada<0){
+                        throw new NumberFormatException();
+                    }
+                }catch (NumberFormatException ex){
+                errores.add("Debe Ingresar Un Valor Mayor que 0");
+                }
+
                 calificacionStr=spinnerCalificacion.getSelectedItem().toString();
                 generoStr=spinnerGenero.getSelectedItem().toString();
 
-                Concierto concierto = new Concierto();
-                concierto.setNombreArtista("RELLENAR");
-                concierto.setValorEntrada(2);
-                concierto.setCalificacion(Integer.parseInt(calificacionStr));
-                concierto.setFechaEvento(calendario.getTime());
-                concierto.setGeneroMusical(generoStr);
-                Toast.makeText(MainActivity.this
-                        ,"Fecha: "+concierto.getFechaEvento() + "  Genero: "+ concierto.getGeneroMusical()
-                        ,Toast.LENGTH_SHORT).show();
+
+
+                if(errores.isEmpty()){
+                    Concierto concierto = new Concierto();
+                    concierto.setNombreArtista(artistaStr);
+                    concierto.setValorEntrada(valorEntrada);
+                    concierto.setCalificacion(Integer.parseInt(calificacionStr));
+                    concierto.setFechaEvento(calendario.getTime());
+                    concierto.setGeneroMusical(generoStr);
+                    cDAO.add(concierto);
+                    conciertos = cDAO.getAll();
+                    miAdaptador = new Adaptador(MainActivity.this,R.layout.list_item,conciertos);
+                    listaConciertos.setAdapter(miAdaptador);
+                    miAdaptador.notifyDataSetChanged();
+                    Toast.makeText(MainActivity.this
+                            ,"El Concierto Se A Registrado Exitosamente"
+                            ,Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    mostrarErrores(errores);
+                }
+
+
             }
+
         });
+
+
+
     }
 
+
+
+    private void mostrarErrores(List<String> errores){
+        //1. Generar una cadena de texto con los errores
+        String mensaje="";
+        for(String e:errores){
+            mensaje+= "-" + e + "\n";
+        }
+        //2. Mostrar un mensaje de alerta
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertBuilder
+                .setTitle("Error De Validacion")
+                .setMessage(mensaje)
+                .setPositiveButton("Aceptar",null)
+                .create()
+                .show();
+    }
 
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

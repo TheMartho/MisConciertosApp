@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">MisConciertos</string>
-    <string name="Titulo">Registre Los Conciertos A Los Que Asistio</string>
-    <string name="Artista">Artista</string>
+    <string name="Titulo">Registre Los Conciertos A Los Que Asistió</string>
+    <string name="Artista">Artista:</string>
     <string name="HintArtista">Ingrese Nombre del Artista</string>
-    <string name="Fecha">Fecha Del Evento</string>
-    <string name="Genero">Genero Musical</string>
-    <string name="Entrada">Valor De Entrada</string>
-    <string name="Calificacion">Calificación</string>
+    <string name="Fecha">Fecha Del Evento:</string>
+    <string name="Genero">Genero Musical:</string>
+    <string name="Entrada">Valor De Entrada:</string>
+    <string name="Calificacion">Calificación:</string>
     <string name="registrar">Registrar</string>
-    <string name="HintValor">El Valor Debe Ser Mayor Que Cero</string>
+    <string name="HintValor">Mayor Que Cero</string>
+    <string name="hintFecha">Seleccionar Fecha</string>
 </resources>

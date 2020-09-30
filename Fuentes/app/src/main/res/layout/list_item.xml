@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/marginTopBase">
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="@dimen/letraBase"
+        android:text="@string/Fecha"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"></TextView>
+    <TextView
+        android:id="@+id/verFechaTxt"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/letraBase"
+        android:text=""
+        android:layout_height="wrap_content"></TextView>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/marginTopBase">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="@dimen/letraBase"
+            android:text="@string/Artista"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/verArtistaTxt"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/letraBase"
+            android:text=""
+            android:layout_height="wrap_content"></TextView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/marginTopBase">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="@dimen/letraBase"
+            android:text="@string/Entrada"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/verEntradaTxt"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/letraBase"
+            android:text=""
+            android:layout_height="wrap_content"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/marginTopBase">
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="@dimen/letraBase"
+            android:layout_weight="1"
+            android:text="@string/Calificacion"
+            android:layout_height="wrap_content"></TextView>
+ <ImageView
+     android:id="@+id/calificacionImg"
+     android:layout_weight="1"
+     android:layout_width="match_parent"
+     android:layout_height="35dp"></ImageView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,9 +5,9 @@ import java.util.List;
 
 import cl.inacap.misconciertos.dto.Concierto;
 
-public class ConciertoDAO {
+public class ConciertosDAO {
 
-    private List<Concierto> conciertos = new ArrayList<>();
+    private static List<Concierto> conciertos = new ArrayList<Concierto>();
 
     public void add(Concierto c) {
         conciertos.add(c);
